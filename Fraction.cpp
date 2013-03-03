@@ -64,3 +64,21 @@ Fraction::mult(Fraction other)
 	return fract;
 }
 
+Fraction
+Fraction::sub(Fraction other)
+{
+    Fraction fract;
+    int lcd = lcm(den, other.den);
+    int quot1 = lcd / den;
+    int quot2 = lcd / other.den;
+    fract.set(num * quot1 - other.num * quot2, lcd);
+    return fract;
+}
+
+Fraction
+Fraction::div(Fraction other)
+{
+    Fraction fract;
+    fract.set(num * other.den, den * other.num);
+    return fract;
+}
