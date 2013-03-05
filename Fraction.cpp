@@ -46,7 +46,7 @@ Fraction::lcm(int a, int b)
 }
 
 Fraction
-Fraction::add(Fraction other)
+Fraction::add(const Fraction &other)
 {
 	Fraction fract;
 	int lcd = lcm(den, other.den);
@@ -57,7 +57,7 @@ Fraction::add(Fraction other)
 }
 
 Fraction
-Fraction::mult(Fraction other)
+Fraction::mult(const Fraction &other)
 {
 	Fraction fract;
 	fract.set(num * other.num, den * other.den);
@@ -65,7 +65,7 @@ Fraction::mult(Fraction other)
 }
 
 Fraction
-Fraction::sub(Fraction other)
+Fraction::sub(const Fraction &other)
 {
     Fraction fract;
     int lcd = lcm(den, other.den);
@@ -76,9 +76,46 @@ Fraction::sub(Fraction other)
 }
 
 Fraction
-Fraction::div(Fraction other)
+Fraction::div(const Fraction &other)
 {
     Fraction fract;
     fract.set(num * other.den, den * other.num);
     return fract;
+}
+
+Fraction
+Fraction::operator+(Fraction &other)
+{
+    return add(other);
+}
+
+Fraction
+Fraction::operator-(Fraction &other)
+{
+    return sub(other);
+}
+
+Fraction
+Fraction::operator*(Fraction &other)
+{
+    return mult(other);
+}
+
+Fraction
+Fraction::operator/(Fraction &other)
+{
+    return div(other);
+}
+
+bool
+Fraction::operator==(Fraction &other)
+{
+    return (num == other.num && den == other.den);
+}
+
+std::ostream
+&operator<<(ostream &os, Fraction &fract)
+{
+    os << fract.num << "/" << fract.den;
+    return os;
 }

@@ -5,6 +5,7 @@
  *      Author: Zack
  */
 
+#include <iostream>
 #include <UnitTest++.h>
 #include "Fraction.h"
 
@@ -166,4 +167,92 @@ TEST_FIXTURE(FractionTestFixture, VerifyCopyConstructor)
 
     CHECK_EQUAL(1, fract2.get_num());
     CHECK_EQUAL(2, fract2.get_den());
+}
+
+TEST(ClassOperatorAdd)
+{
+    Fraction fract(1, 2);
+    Fraction fract2(1, 3);
+
+    Fraction result = fract + fract2;
+
+    CHECK_EQUAL(5, result.get_num());
+    CHECK_EQUAL(6, result.get_den());
+
+}
+
+TEST(ClassOperatorSubtract)
+{
+    Fraction fract(1, 2);
+    Fraction fract2(1, 3);
+
+    Fraction result = fract - fract2;
+
+    CHECK_EQUAL(1, result.get_num());
+    CHECK_EQUAL(6, result.get_den());
+
+}
+
+TEST(ClassOperatorMultiply)
+{
+    Fraction fract(1, 2);
+    Fraction fract2(1, 3);
+
+    Fraction result = fract * fract2;
+
+    CHECK_EQUAL(1, result.get_num());
+    CHECK_EQUAL(6, result.get_den());
+
+}
+
+TEST(ClassOperatorDevide)
+{
+    Fraction fract(2, 6);
+    Fraction fract2(1, 3);
+
+    Fraction result = fract / fract2;
+
+    CHECK_EQUAL(1, result.get_num());
+    CHECK_EQUAL(1, result.get_den());
+
+}
+
+TEST(ClassOperatorEqual)
+{
+    Fraction fract(1, 3);
+    Fraction fract2(1, 3);
+
+    if(fract == fract2)
+        CHECK(true);
+    else
+        CHECK(false);
+}
+
+TEST(ClassOperatorEqualWithReduction)
+{
+    Fraction fract(1, 3);
+    Fraction fract2(2, 6);
+
+    if(fract == fract2)
+        CHECK(true);
+    else
+        CHECK(false);
+}
+
+TEST(ClassOperatorNotEqual)
+{
+    Fraction fract(1, 3);
+    Fraction fract2(1, 4);
+
+    if(fract == fract2)
+        CHECK(false);
+    else
+        CHECK(true);
+}
+
+TEST(PrintTest)
+{
+    Fraction fract(1, 3);
+    std::cout << "fraction << operator print test: " << fract << std::endl;
+    CHECK(true);
 }
